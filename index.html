@@ -912,15 +912,155 @@
       .pdp-info { padding: 30px 20px; }
     }
   </style>
+  <style id="header-footer-cleanup">
+    /* Quiet header: one navigation row, one compact delivery message. */
+    .utility-bar { display: none !important; }
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(17,17,17,.07);
+    }
+    .nav-wrap .container { width: min(1440px, calc(100% - 64px)); }
+    .nav-wrap nav { min-height: 68px; grid-template-columns: 150px 1fr 240px; }
+    .nav-links { gap: clamp(22px,2.3vw,38px); }
+    .nav-links a { font-size: 14px; font-weight: 600; }
+    .nav-links a::after { bottom: -23px; }
+    .nav-actions { gap: 2px; }
+    .search-pill { min-width: 126px; height: 40px; }
+    .clean-icon { width: 40px; height: 40px; }
+    .delivery-strip {
+      height: 42px;
+      flex-direction: row;
+      gap: 0;
+      background: #f6f6f6;
+      color: #111;
+      font-size: 11px;
+      letter-spacing: .01em;
+      border-bottom: 1px solid #ededed;
+    }
+    .delivery-strip span { font-size: 11px; }
+    .delivery-strip b { margin-right: 5px; }
+    .delivery-strip::before, .delivery-strip::after { display: none; }
+
+    /* Compact footer: brand, essential support, social, then one utility rail. */
+    footer { background: #0d0d0d; color: #fff; }
+    .footer-shell { width: min(1440px, 100%); margin: 0 auto; padding: 64px 48px 26px; }
+    .footer-main {
+      display: grid;
+      grid-template-columns: minmax(360px,1.55fr) minmax(180px,.55fr) minmax(180px,.55fr);
+      gap: clamp(54px,7vw,112px);
+      align-items: start;
+      padding-bottom: 58px;
+    }
+    .footer-brand-block { max-width: 620px; }
+    .footer-wordmark {
+      margin: 0 0 30px;
+      font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+      font-size: clamp(64px,7.6vw,112px);
+      font-weight: 900;
+      line-height: .74;
+      letter-spacing: -.105em;
+    }
+    .footer-wordmark span {
+      color: #ff6548;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: .31em;
+      letter-spacing: -.06em;
+    }
+    .footer-tagline { max-width: 520px; margin: 0; color: rgba(255,255,255,.64); font-size: 13px; line-height: 1.65; }
+    .footer-trust { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+    .footer-trust span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 13px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 999px;
+      color: rgba(255,255,255,.9);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .footer-panel h4 { margin: 3px 0 22px; color: rgba(255,255,255,.45); font-size: 10px; letter-spacing: .16em; }
+    .footer-panel a { display: block; width: fit-content; margin: 0 0 13px; color: rgba(255,255,255,.88); font-size: 13px; line-height: 1.4; }
+    .footer-panel a:hover { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
+    .social-row { gap: 9px; }
+    .social-row a {
+      width: 38px;
+      height: 38px;
+      margin: 0;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: -.02em;
+      transition: background .2s, color .2s, border-color .2s, transform .2s;
+    }
+    .social-row a:hover { background: #fff; color: #111; border-color: #fff; text-decoration: none; transform: translateY(-2px); }
+    .footer-rail {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 22px 0 0;
+      border-top: 1px solid rgba(255,255,255,.13);
+    }
+    .payment-row { margin: 0; gap: 6px; }
+    .payment-row span {
+      min-width: auto;
+      height: 25px;
+      padding: 0 10px;
+      background: #f2f2f2;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 4px;
+      font-size: 8px;
+      letter-spacing: .01em;
+    }
+    .legal-row { justify-content: flex-end; margin: 0; gap: 16px; color: rgba(255,255,255,.42); }
+    .legal-row a { color: rgba(255,255,255,.72); text-decoration: none; }
+    .legal-row a:hover { color: #fff; }
+
+    @media (max-width: 1020px) {
+      .nav-wrap .container { width: min(100% - 36px,1440px); }
+      .nav-wrap nav { grid-template-columns: 110px 1fr 180px; }
+      .nav-links { gap: 18px; }
+      .search-pill { min-width: 42px; width: 42px; padding: 0; justify-content: center; }
+      .search-pill b { display: none; }
+      .footer-main { grid-template-columns: 1.35fr .65fr; }
+      .footer-social { grid-column: 2; }
+      .footer-rail { align-items: flex-start; flex-direction: column; }
+      .legal-row { justify-content: flex-start; }
+    }
+    @media (max-width: 760px) {
+      .nav-wrap .container { width: calc(100% - 28px); }
+      .nav-wrap nav { min-height: 60px; grid-template-columns: 1fr auto; }
+      .delivery-strip { height: 38px; padding: 0 16px; text-align: center; }
+      .delivery-strip span { font-size: 10px; }
+      .footer-shell { padding: 48px 20px 24px; }
+      .footer-main { grid-template-columns: 1fr; gap: 42px; padding-bottom: 44px; }
+      .footer-wordmark { margin-bottom: 24px; font-size: clamp(64px,24vw,96px); }
+      .footer-support, .footer-social { grid-column: auto; }
+      .footer-panel h4 { margin-bottom: 17px; }
+      .footer-panel a { margin-bottom: 11px; }
+      .footer-rail { gap: 24px; }
+      .payment-row { width: 100%; display: grid; grid-template-columns: repeat(3,1fr); }
+      .payment-row span { justify-content: center; padding: 0 6px; }
+      .legal-row { flex-direction: row; gap: 10px 16px; }
+      .legal-row span { flex-basis: 100%; }
+    }
+  </style>
 </head>
 <body>
   <a class="skip" href="#main">Үндсэн хэсэг рүү очих</a>
-  <div class="utility-bar" id="announce"><div class="container"><span>Jordan</span><span class="utility-right"><a href="#footer">Тусламж</a><a href="#footer">Бидэнтэй нэгдэх</a><a href="#footer">Нэвтрэх</a></span></div></div>
   <header class="nav-wrap" id="navWrap">
     <div class="container">
       <nav aria-label="Үндсэн цэс">
         <a class="logo" href="#top" aria-label="SOLE 26 нүүр" onclick="showHome()">S<i>/26</i></a>
-        <div class="nav-links"><a href="#new">Шинэ & Онцлох</a><a href="#new" onclick="setFilter('Lifestyle')">Эрэгтэй</a><a href="#new" onclick="setFilter('Lifestyle')">Эмэгтэй</a><a href="#new" onclick="setFilter('Basketball')">Хүүхэд</a><a href="#new">Sale</a></div>
+        <div class="nav-links"><a href="#new">Шинэ</a><a href="#new" onclick="setFilter('Lifestyle')">Эрэгтэй</a><a href="#new" onclick="setFilter('Lifestyle')">Эмэгтэй</a><a href="#new" onclick="setFilter('Basketball')">Хүүхэд</a><a href="#new">Sale</a></div>
         <div class="nav-actions">
           <button class="search-pill" aria-label="Хайх" onclick="focusSearch()"><span>⌕</span><b>Хайх</b></button>
           <button class="clean-icon search-btn" aria-label="Хадгалсан бараа">♡</button>
@@ -930,7 +1070,7 @@
       </nav>
     </div>
   </header>
-  <div class="delivery-strip"><b>Үнэгүй хүргэлт</b><span>300,000₮-с дээш захиалгад · <u>Дэлгэрэнгүй</u></span></div>
+  <div class="delivery-strip"><span><b>Үнэгүй хүргэлт</b> · 300,000₮-с дээш захиалгад</span></div>
 
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <button class="icon-btn close-mobile" aria-label="Цэс хаах" onclick="toggleMenu(false)">×</button>
@@ -1053,19 +1193,25 @@
 
   <footer id="footer">
     <div class="footer-shell">
-      <div class="footer-columns">
-        <div class="footer-about"><h4>БИДНИЙ ТУХАЙ</h4><p>SOLE/26 бол орчин үеийн sneaker culture, баталгаатай бүтээгдэхүүн, хялбар худалдан авалтыг нэг дор нэгтгэсэн Монголын концепт дэлгүүр. <a href="#footer">Дэлгэрэнгүй унших</a></p></div>
-        <div><h4>ХОЛБООС</h4><a href="#new">Шинэ загвар</a><a href="#bestsellers">Best sellers</a><a href="#footer">Гишүүнчлэл</a><a href="#footer">Блог</a><a href="#footer">Ажлын байр</a></div>
-        <div><h4>ТУСЛАМЖ & МЭДЭЭЛЭЛ</h4><a href="#footer">Тусламжийн төв</a><a href="#footer">Захиалга шалгах</a><a href="#footer">Хүргэлтийн нөхцөл</a><a href="#footer">Буцаалт</a><a href="#footer">Холбоо барих</a></div>
-        <div class="footer-signup"><h4>SOLE/26 CREW-Д НЭГДЭХ</h4><p>Шинэ drop, sale болон event-ийн мэдээллийг түрүүлж аваарай. Эхний захиалгад <b>10% OFF.</b></p><form onsubmit="subscribe(event)"><input id="email" type="email" required placeholder="И-мэйл хаяг"><button aria-label="Бүртгүүлэх">Бүртгүүлэх</button></form></div>
+      <div class="footer-main">
+        <div class="footer-brand-block">
+          <div class="footer-wordmark">SOLE<span>/26</span></div>
+          <p class="footer-tagline">Хотын хэмнэлд зориулсан сонгогдсон sneaker. Баталгаатай бүтээгдэхүүн, ойлгомжтой худалдан авалт, илүү цэвэр туршлага.</p>
+          <div class="footer-trust"><span>✓ 100% Original</span><span>14 хоногийн буцаалт</span></div>
+        </div>
+        <div class="footer-panel footer-support">
+          <h4>ТУСЛАМЖ & МЭДЭЭЛЭЛ</h4>
+          <a href="#footer">Захиалга шалгах</a><a href="#footer">Хүргэлтийн нөхцөл</a><a href="#footer">Буцаалт</a><a href="#footer">Холбоо барих</a>
+        </div>
+        <div class="footer-panel footer-social">
+          <h4>БИДНИЙГ ДАГАХ</h4>
+          <div class="social-row"><a href="#footer" aria-label="Instagram">IG</a><a href="#footer" aria-label="Facebook">f</a><a href="#footer" aria-label="TikTok">TT</a><a href="#footer" aria-label="X">𝕏</a></div>
+        </div>
       </div>
-      <div class="footer-mid">
-        <div class="footer-wordmark">SOLE<span>/26</span></div>
-        <div><h4>БАТАЛГАА</h4><div class="cert-row"><span>✓ ORIGINAL</span><span>14D RETURN</span></div></div>
-        <div><h4>БИДНИЙГ ДАГАХ</h4><div class="social-row"><a href="#footer">◎</a><a href="#footer">f</a><a href="#footer">▶</a><a href="#footer">♪</a><a href="#footer">in</a><a href="#footer">𝕏</a></div></div>
+      <div class="footer-rail">
+        <div class="payment-row" aria-label="Төлбөрийн аргууд"><span>QPay</span><span>VISA</span><span>Mastercard</span><span>SocialPay</span><span>Apple Pay</span><span>₮ Card</span></div>
+        <div class="legal-row"><span>© 2026 SOLE/26</span><a href="#footer">Үйлчилгээний нөхцөл</a><a href="#footer">Нууцлал</a></div>
       </div>
-      <div class="payment-row" aria-label="Төлбөрийн аргууд"><span>QPay</span><span>VISA</span><span>Mastercard</span><span>SocialPay</span><span>Apple Pay</span><span>₮ Card</span></div>
-      <div class="legal-row"><span>© 2026 SOLE/26. Бүх эрх хуулиар хамгаалагдсан.</span><a href="#footer">Үйлчилгээний нөхцөл</a><a href="#footer">Нууцлал</a><a href="#footer">Хүргэлт</a><a href="#footer">Буцаалт</a></div>
     </div>
   </footer>
 
